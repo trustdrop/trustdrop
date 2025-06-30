@@ -9,12 +9,19 @@ const axiosInstance = axios.create({
   baseURL: API_URL,
 });
 
-// Intercepteur pour ajouter automatiquement le token JWT dans le header Authorization
+// Intercepteur pour ajouter automatiquement le token JWT ou Shopify dans le header Authorization
 // Ajoute le header Authorization: Bearer TOKEN à chaque requête API si le token existe dans localStorage
 axiosInstance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('jwt');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  // Priorité au token Shopify (OAuth), sinon JWT classique
+  const shopifyToken = localStorage.getItem('shopifyToken');
+  if (shopifyToken) {
+    // Le backend attend Authorization: Bearer <shopifyToken> pour les routes protégées Shopify
+    config.headers.Authorization = `Bearer ${shopifyToken}`;
+  } else {
+    const token = localStorage.getItem('jwt');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 });

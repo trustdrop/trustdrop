@@ -33,6 +33,20 @@ export function AuthProvider({ children }) {
     const shopify = localStorage.getItem('shopifyToken');
     setShopifyToken(shopify);
     setIsConnected(!!shopify);
+
+    // --- Stockage du token Shopify reçu en callback OAuth ---
+    // Si l'URL contient ?shopifyToken=...&shop=..., on le stocke dans localStorage
+    const params = new URLSearchParams(window.location.search);
+    const shopifyTokenFromUrl = params.get('shopifyToken');
+    if (shopifyTokenFromUrl) {
+      localStorage.setItem('shopifyToken', shopifyTokenFromUrl);
+      setShopifyToken(shopifyTokenFromUrl);
+      setIsConnected(true);
+      // Nettoie l'URL pour éviter de garder le token en query
+      params.delete('shopifyToken');
+      window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
+    }
+    // --------------------------------------------------------
   }, []);
 
   // Login : stocke le token et l'utilisateur
