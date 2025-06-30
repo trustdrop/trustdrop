@@ -1,0 +1,14 @@
+# Fichier de configuration Shopify App (exemple minimal)
+# À personnaliser avant déploiement
+
+[app]
+client_id = "VOTRE_CLIENT_ID_SHOPIFY" # TODO: Remplacer par votre vrai client_id Shopify
+client_secret = "VOTRE_SECRET_SHOPIFY" # TODO: Remplacer par votre vrai secret Shopify
+scopes = "read_orders,write_orders" # TODO: Adapter les scopes selon les besoins
+redirect_uri = "https://votre-app-url.com/shopify/auth/callback" # TODO: Remplacer par l'URL publique de l'app
+
+[contact]
+email = "trustdrop.contact@gmail.com" # TODO: Vérifier l'email de contact avant publication
+
+[webhooks]
+# TODO: Ajouter ici les webhooks nécessaires 
