@@ -24,19 +24,28 @@ const REDIRECT_URI = `${APP_URL}/shopify/auth/callback`;
 // 1️⃣ Route d'installation /auth : redirige vers Shopify OAuth
 router.get('/auth', (req, res) => {
   const { shop } = req.query;
-  if (!shop) return res.status(400).send('Paramètre shop manquant');
+  console.log('[OAuth] /shopify/auth appelé avec shop =', shop);
+  if (!shop) {
+    console.error('[OAuth] /shopify/auth : paramètre shop manquant');
+    return res.status(400).send('Paramètre shop manquant');
+  }
   const installUrl =
     `https://${shop}/admin/oauth/authorize?client_id=${SHOPIFY_API_KEY}` +
     `&scope=${encodeURIComponent(SCOPES)}` +
     `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}` +
     `&state=randomstring`;
+  console.log('[OAuth] Redirection vers Shopify installUrl =', installUrl);
   res.redirect(installUrl);
 });
 
 // 2️⃣ Callback OAuth /auth/callback : échange le code contre un access token
 router.get('/auth/callback', async (req, res) => {
   const { shop, code, state } = req.query;
-  if (!shop || !code) return res.status(400).send('Paramètres manquants');
+  console.log('[OAuth] /shopify/auth/callback appelé avec shop =', shop, 'code =', code);
+  if (!shop || !code) {
+    console.error('[OAuth] /shopify/auth/callback : paramètres manquants');
+    return res.status(400).send('Paramètres manquants');
+  }
   try {
     // Échange du code contre un access_token
     const tokenRes = await axios.post(`https://${shop}/admin/oauth/access_token`, {
@@ -48,10 +57,12 @@ router.get('/auth/callback', async (req, res) => {
     // Stockage du token Shopify en session (à adapter pour la prod)
     req.session.shop = shop;
     req.session.shopifyToken = accessToken;
+    console.log('[OAuth] Token Shopify stocké en session pour', shop);
     // Redirige vers l'app frontend après login
     res.redirect(`${APP_URL}/dashboard`);
   } catch (err) {
-    res.status(500).send('Erreur OAuth Shopify: ' + err.message);
+    console.error('[OAuth] Erreur lors de l\'échange du code contre le token Shopify:', err.response?.data || err.message);
+    res.status(500).send('Erreur OAuth Shopify: ' + (err.response?.data?.error_description || err.message));
   }
 });
 
