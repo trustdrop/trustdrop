@@ -4,6 +4,8 @@ const SHOPIFY_API_KEY = process.env.SHOPIFY_API_KEY;
 const SHOPIFY_API_SECRET = process.env.SHOPIFY_API_SECRET;
 const APP_URL = process.env.SHOPIFY_APP_URL;
 
+// TODO : changer SHOPIFY_APP_URL pour https://trustdrop.io lors du passage en prod
+
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     const { shop, code, state } = req.query;

@@ -18,6 +18,8 @@ const REDIRECT_URI = `${APP_URL}/shopify/auth/callback`;
 // TODO: Ajouter ici la config Cloudinary dans le .env (CLOUDINARY_URL=...)
 // Voir README pour la clé à insérer
 
+// TODO : changer SHOPIFY_APP_URL pour https://trustdrop.io lors du passage en prod
+
 // Toutes les routes OAuth utilisent les variables d'environnement définies dans .env
 // TODO: Ajouter ici d'autres configs ou clés si besoin avant publication (ex: gestion avancée du state, sécurité, etc.)
 

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const SHOPIFY_API_KEY = process.env.SHOPIFY_API_KEY;
 const SCOPES = process.env.SHOPIFY_SCOPES;
+// TODO : changer SHOPIFY_APP_URL pour https://trustdrop.io lors du passage en prod
 const APP_URL = process.env.SHOPIFY_APP_URL;
 const REDIRECT_URI = `${APP_URL}/api/shopify-auth-callback`;
 
