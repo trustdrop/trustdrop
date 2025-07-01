@@ -44,4 +44,31 @@ function checkJwt(req, res) {
     return null;
   }
 }
-``` 
+```
+
+---
+
+## 🔌 Rebrancher une vraie base de données plus tard (Sequelize/Postgres)
+
+1. **Restaurer la config Sequelize**
+   - Remets le contenu d'origine dans `backend/config/db.js` (voir l'historique git ou le backup).
+   - Mets à jour la variable d'environnement `DB_URL` dans Vercel ou dans un `.env` local :
+     ```
+     DB_URL=postgres://username:password@host:5432/nomdelabase
+     ```
+
+2. **Restaurer les modèles**
+   - Remets le code d'origine dans `backend/models/commande.js`, `backend/models/preuveLivraison.js`, `backend/models/utilisateur.js`.
+   - Restaure la centralisation dans `backend/models/index.js`.
+
+3. **Réactiver la logique dans les handlers**
+   - Remets la logique d'accès à la DB dans les fichiers `api/commande.js`, `api/preuve.js`, `api/stats.js`, etc.
+   - Supprime les messages TODO et réactive les appels Sequelize (`findAll`, `create`, etc.).
+
+4. **Déployer**
+   - Vérifie que la base est bien accessible depuis Vercel (ou ton environnement local).
+   - Les endpoints fonctionneront alors avec la vraie base de données.
+
+**Astuce** : utilise l'historique git pour restaurer les fichiers supprimés ou modifiés.
+
+--- 

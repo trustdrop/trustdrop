@@ -1,3 +1,7 @@
+// Ce backend fonctionne sans base de données. Voir README pour rebrancher une DB plus tard.
+
+// (Ancienne config Sequelize/Postgres supprimée)
+
 // TODO: Ajouter la config Cloudinary ici si besoin (voir .env et README)
 // CLOUDINARY_URL=... à compléter avant publication
 
