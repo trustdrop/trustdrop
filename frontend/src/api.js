@@ -2,7 +2,8 @@ import axios from 'axios';
 
 // Utilisation de import.meta.env pour Vite (process.env n'est pas supporté par défaut)
 // Voir : https://vitejs.dev/guide/env-and-mode.html
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+// CHANGEMENT : on utilise désormais VITE_BACKEND_URL pour pointer vers le backend Vercel
+const API_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
 
 // Création d'une instance Axios
 const axiosInstance = axios.create({
