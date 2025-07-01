@@ -71,4 +71,27 @@ function checkJwt(req, res) {
 
 **Astuce** : utilise l'historique git pour restaurer les fichiers supprimés ou modifiés.
 
+---
+
+## Endpoints API principaux
+
+Les routes API sont accessibles via l'URL :
+
+    https://trustdrop-backend.vercel.app/api/<endpoint>
+
+Exemples :
+- Statistiques : `https://trustdrop-backend.vercel.app/api/stats`
+- Commandes : `https://trustdrop-backend.vercel.app/api/commande`
+- Preuves : `https://trustdrop-backend.vercel.app/api/preuve`
+- Authentification : `https://trustdrop-backend.vercel.app/api/auth`
+
+**Remarque :**
+- Toute nouvelle route doit être créée dans le dossier `backend/api/`.
+- Les handlers API incluent un header CORS :
+  ```js
+  // CORS : autorise uniquement le frontend TrustDrop Alpha (à adapter si tu changes d'URL !)
+  res.setHeader('Access-Control-Allow-Origin', 'https://trustdrop-alpha.vercel.app');
+  ```
+  Si tu changes d'URL frontend, modifie cette valeur dans chaque handler concerné.
+
 --- 
