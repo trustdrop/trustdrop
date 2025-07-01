@@ -33,6 +33,7 @@ export const config = {
 };
 
 export default async function handler(req, res) {
+  // CORS : autorise uniquement le frontend TrustDrop Alpha (à adapter si tu changes d'URL !)
   res.setHeader('Access-Control-Allow-Origin', 'https://trustdrop-alpha.vercel.app');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
