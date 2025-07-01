@@ -45,4 +45,6 @@ export const getCommande = (id) => axiosInstance.get(`/commande/${id}`);
 export const postCommande = (data) => axiosInstance.post('/commande', data);
 export const postPreuve = (data) => axiosInstance.post('/preuve', data);
 
+// TODO : changer VITE_BACKEND_URL pour https://trustdrop.io lors du passage en prod
+
 export default axiosInstance; 

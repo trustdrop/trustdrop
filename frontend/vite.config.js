@@ -13,3 +13,6 @@ export default defineConfig(({ mode }) => {
   };
 });
 // Les variables VITE_BACKEND_URL seront injectées automatiquement par Vercel lors du build 
+
+// VITE_BACKEND_URL doit être défini dans le .env (.env, .env.production, etc.)
+// TODO : changer pour https://trustdrop.io lors du passage en prod 

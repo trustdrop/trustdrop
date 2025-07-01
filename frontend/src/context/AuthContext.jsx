@@ -67,7 +67,7 @@ export function AuthProvider({ children }) {
   // Connexion Shopify réelle : redirige vers le backend pour OAuth
   const connectShopify = (shop = '') => {
     // On construit l'URL du backend (VITE_BACKEND_URL doit être défini dans le .env du frontend)
-    // Exemple : VITE_BACKEND_URL=https://api.trustdrop.io
+    // Exemple : VITE_BACKEND_URL=https://trustdrop-backend.vercel.app // TODO : changer pour trustdrop.io lors du passage en prod
     const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:4000';
     // On demande le nom de la boutique si non fourni
     let shopDomain = shop;
